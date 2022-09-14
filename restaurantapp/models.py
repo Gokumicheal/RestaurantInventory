@@ -21,6 +21,7 @@ class MenuItems(models.Model):
     price = models.FloatField()
 
 
+
 class RecipeRequirements(models.Model):
     menu = models.ForeignKey(MenuItems, on_delete=models.CASCADE)
     ingrediant = models.ForeignKey(Ingrediants, on_delete=models.CASCADE)
@@ -30,3 +31,4 @@ class PurchaseLog(models.Model):
     menu = models.ForeignKey(MenuItems, on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now=True)
     quantity = models.FloatField(default=1)
+
