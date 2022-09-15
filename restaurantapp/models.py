@@ -17,10 +17,22 @@ class Ingrediants(models.Model):
     price_per_unit = models.FloatField()
     unit = models.CharField(max_length=2, choices=unit_choices)
 
+    class Meta:
+        verbose_name_plural = "Ingrediants"
+
+    def __str__(self):
+        return self.name
+
 
 class MenuItems(models.Model):
     name = models.CharField(max_length=100)
     price = models.FloatField()
+
+    class Meta:
+        verbose_name_plural = "Menu Items"
+   
+    def __str__(self):
+        return self.name
 
 
 
@@ -29,9 +41,14 @@ class RecipeRequirements(models.Model):
     ingrediant = models.ForeignKey(Ingrediants, on_delete=models.CASCADE)
     quantity = models.FloatField(default=0)
 
+    class Meta:
+        verbose_name_plural = "Recipe Requirements"
+
 
 class PurchaseLog(models.Model):
     menu = models.ForeignKey(MenuItems, on_delete=models.CASCADE)
-    date = models.DateTimeField(auto_now=True)
-    quantity = models.FloatField(default=1)
+    timestamp = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return self.menu
 

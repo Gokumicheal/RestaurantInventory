@@ -5,26 +5,23 @@ from .models import Ingrediants, MenuItems, RecipeRequirements, PurchaseLog
 
 
 class IngregdiantsAdmin(admin.ModelAdmin):
-    list_display = ["name", "available_quantity", "price_per_unit", "unit"]
-    list_filter = ["name", "available_quantity"]
+    list_display = ["id", "name", "available_quantity", "price_per_unit", "unit"]
+    list_filter = ["id", "name", "available_quantity"]
 
-    def __str__(self):
-        return self.id
 
 class MenuItemsAdmin(admin.ModelAdmin):
-    list_display = ["name", "price"]
-    list_filter = ["name", "price"]
-
-    def __str__(self):
-        return self.id
+    list_display = ["id", "name", "price"]
+    list_filter = ["id", "name", "price"]
 
 
 class RecipeRequirementsAdmin(admin.ModelAdmin):
-    list_display = ["menu", "ingrediant"]
+    list_display = ["id", "menu", "ingrediant", "quantity"]
+
+class PurchaseLogAdmin(admin.ModelAdmin):
+    list_display = ["id", "menu", "timestamp"]
     
 
-
-admin.site.register(Ingrediants)
-admin.site.register(MenuItems)
-admin.site.register(RecipeRequirements)
-admin.site.register(PurchaseLog)
+admin.site.register(Ingrediants, IngregdiantsAdmin)
+admin.site.register(MenuItems, MenuItemsAdmin)
+admin.site.register(RecipeRequirements, RecipeRequirementsAdmin)
+admin.site.register(PurchaseLog, PurchaseLogAdmin)
